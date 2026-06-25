@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KURO Animation Studios</title>
+
+<meta name="description" content="KURO Animation Studios - Premium CGI, 3D Animation, Product Visualization, Motion Graphics and Cinematic Storytelling.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--bg:#050505;
+--card:#0f0f0f;
+--purple:#b100ff;
+--green:#9cff00;
+--text:#ffffff;
+--muted:#a0a0a0;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Outfit',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#000;
+color:white;
+overflow-x:hidden;
+}
+
+/* VIDEO BACKGROUND */
+
+.bg-video{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-4;
+}
+
+.video-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+linear-gradient(
+135deg,
+rgba(0,0,0,.88),
+rgba(0,0,0,.62)
+);
+z-index:-3;
+}
+
+/* CURSOR GLOW */
+
+#cursor-glow{
+position:fixed;
+width:350px;
+height:350px;
+border-radius:50%;
+
+background:
+radial-gradient(
+circle,
+rgba(177,0,255,.20),
+transparent 70%
+);
+
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:-2;
+}
+
+/* AMBIENT LIGHTS */
+
+body::before{
+content:"";
+position:fixed;
+width:700px;
+height:700px;
+top:-250px;
+left:-250px;
+background:
+radial-gradient(circle,
+rgba(177,0,255,.25),
+transparent 70%);
+pointer-events:none;
+z-index:-1;
+}
+
+body::after{
+content:"";
+position:fixed;
+width:700px;
+height:700px;
+bottom:-250px;
+right:-250px;
+background:
+radial-gradient(circle,
+rgba(156,255,0,.12),
+transparent 70%);
+pointer-events:none;
+z-index:-1;
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:24px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background:rgba(0,0,0,.45);
+backdrop-filter:blur(20px);
+
+border-bottom:
+1px solid rgba(177,0,255,.25);
+
+z-index:999;
+}
+
+.logo-text{
+font-size:1.6rem;
+font-weight:800;
+letter-spacing:2px;
+}
+
+.logo-text span{
+color:var(--purple);
+}
+
+.nav-links{
+display:flex;
+gap:35px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:.3s;
+}
+
+.nav-links a:hover{
+color:var(--green);
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+padding:120px 8%;
+}
+
+.hero-content{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:80px;
+align-items:center;
+max-width:1500px;
+width:100%;
+margin:auto;
+}
+
+.logo-area{
+display:flex;
+justify-content:center;
+}
+
+.logo-area img{
+width:100%;
+max-width:550px;
+
+animation:float 6s ease-in-out infinite;
+
+filter:
+drop-shadow(0 0 25px rgba(177,0,255,.4))
+drop-shadow(0 0 50px rgba(156,255,0,.2));
+}
+
+@keyframes float{
+0%,100%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(-15px);
+}
+}
+
+.hero-text h1{
+font-size:5rem;
+line-height:1.05;
+font-weight:900;
+
+margin-bottom:25px;
+
+text-shadow:
+0 0 15px rgba(177,0,255,.3),
+0 0 35px rgba(177,0,255,.2);
+}
+
+.hero-text h1 span{
+background:
+linear-gradient(
+90deg,
+var(--purple),
+var(--green)
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero-text p{
+font-size:1.2rem;
+line-height:1.9;
+color:var(--muted);
+margin-bottom:35px;
+}
+
+.btns{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:16px 36px;
+border-radius:50px;
+text-decoration:none;
+font-weight:700;
+transition:.3s;
+}
+
+.btn-primary{
+background:
+linear-gradient(
+90deg,
+var(--purple),
+var(--green)
+);
+
+color:black;
+}
+
+.btn-primary:hover{
+transform:translateY(-4px);
+}
+
+.btn-secondary{
+border:1px solid rgba(255,255,255,.15);
+color:white;
+}
+
+.btn-secondary:hover{
+border-color:var(--purple);
+}
+
+/* GENERAL */
+
+section{
+padding:120px 8%;
+}
+
+.section-title{
+font-size:3rem;
+text-align:center;
+margin-bottom:20px;
+}
+
+.section-sub{
+text-align:center;
+max-width:800px;
+margin:auto auto 70px;
+color:var(--muted);
+line-height:1.8;
+}
+
+/* SERVICES */
+
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.service-card{
+background:rgba(0,0,0,.45);
+
+backdrop-filter:blur(15px);
+-webkit-backdrop-filter:blur(15px);
+
+padding:35px;
+border-radius:25px;
+
+border:
+1px solid rgba(255,255,255,.08);
+
+transition:.4s;
+}
+
+.service-card:hover{
+transform:translateY(-10px);
+
+border-color:
+rgba(177,0,255,.5);
+
+box-shadow:
+0 0 40px rgba(177,0,255,.15);
+}
+
+.service-card h3{
+margin-bottom:15px;
+color:var(--green);
+}
+
+.service-card p{
+line-height:1.8;
+color:var(--muted);
+}
+
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+margin-top:60px;
+}
+
+.stat{
+background:rgba(0,0,0,.45);
+backdrop-filter:blur(15px);
+
+padding:40px;
+text-align:center;
+border-radius:25px;
+}
+
+.stat h2{
+font-size:3rem;
+color:var(--purple);
+margin-bottom:10px;
+}
+
+/* SHOWREEL */
+
+.showreel{
+height:700px;
+overflow:hidden;
+border-radius:35px;
+position:relative;
+}
+
+.showreel video{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.showreel-overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.35);
+
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.showreel-overlay h2{
+font-size:5rem;
+font-weight:900;
+}
+
+/* PORTFOLIO */
+
+.portfolio{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+}
+
+.project{
+height:350px;
+overflow:hidden;
+border-radius:25px;
+position:relative;
+cursor:pointer;
+}
+
+.project img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.5s;
+}
+
+.project:hover img{
+transform:scale(1.1);
+}
+
+.project-info{
+position:absolute;
+bottom:0;
+width:100%;
+padding:25px;
+
+background:
+linear-gradient(
+transparent,
+black
+);
+}
+
+/* ABOUT */
+
+.about{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:35px;
+}
+
+.about-box{
+background:rgba(0,0,0,.45);
+
+backdrop-filter:blur(15px);
+
+padding:40px;
+border-radius:25px;
+
+border:
+1px solid rgba(255,255,255,.08);
+}
+
+.about-box p{
+line-height:1.9;
+color:var(--muted);
+}
+
+/* TESTIMONIALS */
+
+.testimonials{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+}
+
+.testimonial{
+background:rgba(0,0,0,.45);
+backdrop-filter:blur(15px);
+
+padding:35px;
+border-radius:25px;
+}
+
+.stars{
+color:var(--green);
+margin-bottom:15px;
+}
+
+/* CONTACT */
+
+.contact{
+background:rgba(0,0,0,.55);
+
+backdrop-filter:blur(18px);
+
+padding:60px;
+border-radius:35px;
+
+max-width:1100px;
+margin:auto;
+
+border:
+1px solid rgba(177,0,255,.2);
+}
+
+.contact-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+}
+
+.contact-info p{
+margin-bottom:18px;
+color:var(--muted);
+}
+
+input,
+textarea{
+width:100%;
+padding:16px;
+margin-bottom:15px;
+
+background:#151515;
+border:none;
+outline:none;
+
+color:white;
+border-radius:12px;
+}
+
+textarea{
+height:180px;
+resize:none;
+}
+
+button{
+border:none;
+cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+padding:50px;
+text-align:center;
+margin-top:100px;
+
+border-top:
+1px solid rgba(255,255,255,.08);
+
+color:var(--muted);
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+.hero-content{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.hero-text h1{
+font-size:3rem;
+}
+
+.about{
+grid-template-columns:1fr;
+}
+
+.contact-grid{
+grid-template-columns:1fr;
+}
+
+.nav-links{
+display:none;
+}
+
+.showreel-overlay h2{
+font-size:2.5rem;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<video class="bg-video" autoplay muted loop playsinline>
+<source src="kuro background.mov" type="video/mp4">
+</video>
+
+<div class="video-overlay"></div>
+
+<div id="cursor-glow"></div>
+
+<!-- NAV -->
+
+<nav>
+
+<div class="logo-text">
+KURO<span>.</span>
+</div>
+
+<div class="nav-links">
+<a href="#services">Services</a>
+<a href="#showreel">Showreel</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="logo-area">
+<img src="kuro-logo.png" alt="KURO Logo">
+</div>
+
+<div class="hero-text">
+
+<h1>
+We Bring Your
+<span>Imaginations</span>
+To Life And Make Your Dreams A Reality
+</h1>
+
+<p>
+If you can cogitate it, we can create it.
+Premium CGI, cinematic animation, luxury product visualization and futuristic digital storytelling crafted for brands that refuse to be ignored.
+</p>
+
+<div class="btns">
+
+<a href="#portfolio" class="btn btn-primary">
+View Portfolio
+</a>
+
+<a href="#contact" class="btn btn-secondary">
+Start A Project
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SERVICES -->
+
+<section id="services">
+
+<h2 class="section-title">Services</h2>
+
+<p class="section-sub">
+High-end creative solutions engineered to elevate products, brands and ideas through world-class visuals.
+</p>
+
+<div class="services">
+
+<div class="service-card">
+<h3>3D Product Advertising</h3>
+<p>Luxury CGI commercials and photoreal product campaigns.</p>
+</div>
+
+<div class="service-card">
+<h3>Motion Graphics</h3>
+<p>Dynamic motion design for marketing and social media.</p>
+</div>
+
+<div class="service-card">
+<h3>Product Visualization</h3>
+<p>Premium product renders with cinematic quality.</p>
+</div>
+
+<div class="service-card">
+<h3>CGI Commercials</h3>
+<p>Modern digital advertisements designed to capture attention.</p>
+</div>
+
+<div class="service-card">
+<h3>Brand Animation</h3>
+<p>Animated identities and storytelling systems.</p>
+</div>
+
+<div class="service-card">
+<h3>VFX & Compositing</h3>
+<p>Advanced effects integration and post-production.</p>
+</div>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<h2>50+</h2>
+<p>Projects Delivered</p>
+</div>
+
+<div class="stat">
+<h2>20+</h2>
+<p>Clients Served</p>
+</div>
+
+<div class="stat">
+<h2>5+</h2>
+<p>Years Experience</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- SHOWREEL -->
+
+<section id="showreel">
+
+<div class="showreel">
+
+<video autoplay muted loop playsinline>
+<source src="kuro background.mov" type="video/mp4">
+</video>
+
+<div class="showreel-overlay">
+<h2>SHOWREEL</h2>
+</div>
+
+</div>
+
+</section>
+
+<!-- PORTFOLIO -->
+
+<section id="portfolio">
+
+<h2 class="section-title">Featured Projects</h2>
+
+<p class="section-sub">
+Professional placeholder imagery until your studio portfolio is added.
+</p>
+
+<div class="portfolio">
+
+<div class="project">
+<img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200">
+<div class="project-info">
+<h3>Luxury Product Commercial</h3>
+</div>
+</div>
+
+<div class="project">
+<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200">
+<div class="project-info">
+<h3>Technology Visualization</h3>
+</div>
+</div>
+
+<div class="project">
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200">
+<div class="project-info">
+<h3>CGI Campaign</h3>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h2 class="section-title">About KURO</h2>
+
+<div class="about">
+
+<div class="about-box">
+<p>
+KURO Animation Studios is a futuristic creative studio specializing in premium CGI, animation, motion graphics, product advertising and visual storytelling.
+</p>
+</div>
+
+<div class="about-box">
+<p>
+We merge imagination, technology and cinematic artistry to transform concepts into unforgettable digital experiences.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- TESTIMONIALS -->
+
+<section>
+
+<h2 class="section-title">Testimonials</h2>
+
+<div class="testimonials">
+
+<div class="testimonial">
+<div class="stars">★★★★★</div>
+<p>KURO transformed our product launch into a cinematic experience.</p>
+</div>
+
+<div class="testimonial">
+<div class="stars">★★★★★</div>
+<p>Outstanding quality, exceptional storytelling and world-class visuals.</p>
+</div>
+
+<div class="testimonial">
+<div class="stars">★★★★★</div>
+<p>Professional, creative and highly recommended for CGI production.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<h2 class="section-title">Start A Project</h2>
+
+<div class="contact">
+
+<div class="contact-grid">
+
+<div class="contact-info">
+
+<h3>Contact Information</h3>
+
+<p>Email<br>
+kuroanimationstudios@gmail.com</p>
+
+<p>Phone<br>
++234 707 977 2322</p>
+
+<p>
+Let's discuss your next animation, commercial or visualization project.
+</p>
+
+</div>
+
+<div>
+
+<input type="text" placeholder="Your Name">
+
+<input type="email" placeholder="Your Email">
+
+<textarea placeholder="Tell us about your project"></textarea>
+
+<button class="btn btn-primary">
+Send Inquiry
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 KURO Animation Studios.
+All Rights Reserved.
+
+</footer>
+
+<script>
+
+const glow=document.getElementById("cursor-glow");
+
+document.addEventListener("mousemove",(e)=>{
+
+glow.style.left=e.clientX+"px";
+glow.style.top=e.clientY+"px";
+
+});
+
+</script>
+
+</body>
+</html>
